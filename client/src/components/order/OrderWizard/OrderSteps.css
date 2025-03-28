@@ -1,0 +1,870 @@
+/* Стили для textarea */
+.form-textarea {
+  height: 350px;
+  resize: none;
+  font-family: inherit;
+  line-height: 1.5;
+  padding: 1rem;
+  width: 100%;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 1.125rem;
+  transition: all 0.2s;
+  background: var(--gray-50);
+  box-sizing: border-box;
+}
+
+.form-textarea::placeholder {
+  color: var(--gray-400);
+}
+
+/* Стили для сетки транспорта */
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.vehicle-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  transition: var(--transition-default);
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.vehicle-card.selected {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.vehicle-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.vehicle-card h4 {
+  font-size: 1rem;
+  margin: 0.75rem 1rem;
+  color: var(--gray-800);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vehicle-card p {
+  font-size: 0.875rem;
+  margin: 0 1rem 0.75rem;
+  color: var(--gray-600);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.specs {
+  background: var(--gray-50);
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--gray-200);
+  width: 100%;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+.specs h5 {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.specs ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.specs ul li {
+  font-size: 0.875rem;
+  color: var(--gray-800);
+  margin-bottom: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Стили для точек маршрута */
+.end-points-container {
+  margin-top: 1.5rem;
+}
+
+.end-points-list {
+  background: var(--gray-50);
+  border-radius: 8px;
+}
+
+.end-point-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Строки с выбором для маршрута */
+.end-point-row {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.end-point-row select,
+.end-point-row input {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0; /* Важно для предотвращения переполнения */
+}
+
+/* Специфический стиль для селектов маршрута */
+.end-point-row select {
+  display: block;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+}
+
+/* Кнопки для добавления/удаления точек маршрута */
+.btn-route-action {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition-default);
+}
+
+/* Специфические стили для кнопок маршрута */
+.btn-route-action.btn-remove {
+  background-color: var(--status-red-bg);
+  color: var(--status-red-text);
+}
+
+.btn-route-action.btn-remove:hover {
+  background-color: #fca5a5;
+  color: #7f1d1d;
+  box-shadow: 0 1px 2px rgba(239, 68, 68, 0.2);
+}
+
+.btn-route-action:not(.btn-remove) {
+  background-color: var(--status-blue-bg);
+  color: var(--status-blue-text);
+}
+
+.btn-route-action:not(.btn-remove):hover {
+  background-color: #93c5fd;
+  color: #1e40af;
+  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Стили для загрузки файлов - улучшенная версия для скрытия нативного input */
+.file-input {
+  position: absolute;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Для лучшей совместимости со старыми браузерами */
+input[type="file"].file-input,
+input[type="file"]#waybill {
+  position: absolute;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Убедимся, что кастомный элемент загрузки файла отображается правильно */
+.file-upload-container {
+  margin-top: 0.5rem;
+  position: relative;
+  width: 100%;
+}
+
+.file-upload-label,
+.file-upload-label-content {
+  width: 100%;
+  min-height: 120px;
+  border: 1px dashed var(--gray-300);
+  border-radius: 8px;
+  background-color: var(--gray-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-default);
+  position: relative;
+  z-index: 1;
+}
+
+.file-upload-label:hover {
+  border-color: var(--accent-color);
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+.file-upload-label-content {
+  border: none;
+  background: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* Улучшенные стили для связи input с label */
+.file-upload-label input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.file-upload-label i {
+  font-size: 2rem;
+  color: var(--gray-400);
+  margin-bottom: 0.5rem;
+}
+
+.file-upload-label span {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  font-weight: normal;
+  max-width: 80%;
+}
+
+.file-hint {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin-top: 0.5rem;
+  display: block;
+  text-align: center;
+}
+
+.comment-counter {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  text-align: right;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Стили для существующего файла */
+.existing-file {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--gray-50);
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+.existing-file i {
+  font-size: 1.25rem;
+  color: var(--accent-color);
+}
+
+.existing-file span {
+  margin-left: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  flex: 1;
+}
+
+/* Стили для секции итогов */
+.summary-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.summary-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.25rem;
+  border: 1px solid var(--gray-200);
+  margin-top: 1rem;
+}
+
+.summary-section h4 {
+  font-size: 1rem;
+  color: var(--gray-700);
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.summary-section h4 i {
+  color: var(--accent-color);
+}
+
+.summary-info {
+  font-size: 0.95rem;
+}
+
+.summary-info p,
+.summary-info .specs-row {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.summary-info p strong,
+.summary-info .specs-label {
+  color: var(--gray-500);
+  font-weight: 500;
+  min-width: 120px;
+  display: inline-block;
+}
+
+.summary-info .specs-value {
+  color: var(--gray-900);
+  font-weight: 500;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.summary-info .specs-unit {
+  color: var(--gray-500);
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+.summary-section.full-width {
+  grid-column: 1 / -1;
+}
+
+.summary-info ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  color: var(--gray-700);
+}
+
+.summary-info ul li {
+  margin-bottom: 0.25rem;
+}
+
+.summary-info .comment-row {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.summary-info .comment-text {
+  font-style: italic;
+  color: var(--gray-600);
+  background: var(--gray-50);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  font-size: 0.875rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Стили для скроллбара в комментарии */
+.comment-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comment-text::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 3px;
+}
+
+.comment-text::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 3px;
+}
+
+.comment-text::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+/* Стили для отображения информации о транспорте */
+.vehicle-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--gray-50);
+  border-radius: 6px;
+  margin: 0.5rem 0 1rem;
+}
+
+/* Стили для накладной */
+.waybill-info {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--gray-50);
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  gap: 0.75rem;
+}
+
+.waybill-info span {
+  font-weight: 500;
+  color: var(--gray-900);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.waybill-info i {
+  color: var(--accent-color);
+  font-size: 1.125rem;
+}
+
+/* Стили для маршрута в итогах */
+.route-summary {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--gray-50);
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  gap: 0.75rem;
+}
+
+.route-summary span {
+  font-weight: 500;
+  color: var(--gray-900);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.route-arrow {
+  color: var(--gray-400);
+  margin: 0 0.25rem;
+}
+
+.route-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+.time-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: var(--gray-50);
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.time-details i {
+  color: var(--accent-color);
+}
+
+.time-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Контейнер для кнопок управления заказом */
+.task-status-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+/* Стили для MUI DateTimePicker */
+.MuiDateTimePicker-root button {
+  color: var(--gray-600);
+  transition: var(--transition-default);
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.MuiDateTimePicker-root button:hover {
+  background-color: var(--gray-100);
+}
+
+.MuiDateTimePicker-root button.selected {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Улучшение адаптивности для кнопок маршрута */
+@media (max-width: 768px) {
+  .vehicles-grid {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  }
+  
+  /* Поправлен стиль для строки с точками маршрута */
+  .end-point-row {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    align-items: center;
+  }
+  
+  /* Стили для select внутри строки маршрута */
+  .end-point-row select {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: calc(100% - 40px);
+  }
+  
+  /* Настройка кнопки маршрута */
+  .btn-route-action {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .summary-content {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Уменьшение размера текстового поля */
+  .form-textarea {
+    height: 350px;
+    padding: 0.875rem;
+    font-size: 1rem;
+  }
+  
+  /* Корректировка отступов и размеров в маршрутной части */
+  .end-points-container {
+    margin-top: 1.25rem;
+  }
+  
+  .end-point-item {
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Настройка для полей даты и времени */
+  .route-selection .MuiTextField-root {
+    margin-top: 6px;
+  }
+  
+  .route-selection .MuiFormLabel-root {
+    font-size: 0.9375rem;
+  }
+  
+  .route-selection .MuiInputBase-input {
+    font-size: 0.9375rem;
+    padding: 0.75rem;
+  }
+  
+  /* Адаптация размеров заголовков в карточках */
+  .summary-info h3,
+  .route-selection h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.875rem;
+  }
+  
+  /* Улучшение отображения итоговой информации */
+  .summary-info .info-row {
+    margin-bottom: 0.75rem;
+    gap: 0.5rem;
+  }
+  
+  .summary-info .label {
+    font-size: 0.9375rem;
+  }
+  
+  .summary-info .value {
+    font-size: 0.9375rem;
+  }
+  
+  .summary-info ul {
+    margin: 0.375rem 0;
+    padding-left: 1.25rem;
+  }
+  
+  .summary-info .comment-text {
+    padding: 0.625rem;
+    font-size: 0.875rem;
+    max-height: 150px;
+  }
+  
+  /* Уменьшение размеров для времени и маршрута */
+  .time-details {
+    padding: 0.625rem;
+    gap: 0.375rem;
+    margin-top: 0.75rem;
+  }
+  
+  .route-summary {
+    padding: 0.625rem;
+    gap: 0.5rem;
+  }
+  
+  .route-time {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 426px) {
+  .vehicles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Уменьшение кнопки для очень малых экранов */
+  .btn-route-action {
+    width: 28px;
+    height: 28px;
+    font-size: 0.875rem;
+  }
+  
+  /* Уменьшение отступов */
+  .end-point-row {
+    padding: 0.375rem 0.625rem;
+    gap: 0.375rem;
+  }
+  
+  /* Настройка селекта для маленьких экранов */
+  .end-point-row select {
+    font-size: 0.875rem;
+    height: 36px;
+    padding-right: 1.5rem; /* Место для иконки выпадающего списка */
+    background-size: 0.875rem;
+  }
+  
+  /* Еще более компактный текстовый ввод */
+  .form-textarea {
+    height: 250px;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  
+  /* Минимизация отступов */
+  .end-points-container {
+    margin-top: 1rem;
+  }
+  
+  .end-point-item {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Уменьшение шрифта в формах */
+  .form-group label {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Оптимизация DateTimePicker для мобильных */
+  .route-selection .MuiFormLabel-root {
+    font-size: 0.875rem;
+  }
+  
+  .route-selection .MuiInputBase-input {
+    font-size: 0.875rem;
+    padding: 0.625rem;
+  }
+  
+  /* Изменение размеров в итоговой информации */
+  .summary-info h3,
+  .route-selection h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .summary-info .info-row {
+    margin-bottom: 0.625rem;
+  }
+  
+  .summary-info .label {
+    font-size: 0.875rem;
+    min-width: 100px;
+  }
+  
+  .summary-info .value {
+    font-size: 0.875rem;
+  }
+  
+  .summary-info ul {
+    font-size: 0.875rem;
+  }
+  
+  .summary-info .comment-text {
+    padding: 0.5rem;
+    font-size: 0.8125rem;
+    max-height: 120px;
+  }
+  
+  /* Компактные детали маршрута */
+  .route-summary span,
+  .waybill-info span {
+    font-size: 0.875rem;
+  }
+  
+  .route-arrow {
+    margin: 0 0.125rem;
+  }
+  
+  .route-time {
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+  }
+  
+  .time-details {
+    font-size: 0.8125rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .time-details i,
+  .route-summary i,
+  .waybill-info i {
+    font-size: 1rem;
+  }
+  
+  /* Уменьшение размера контейнера для кнопок */
+  .task-status-container {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 376px) {
+  .btn-route-action {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
+  }
+  
+  .end-point-row select {
+    font-size: 0.8125rem;
+    height: 34px;
+  }
+  
+  /* Максимально компактный режим */
+  .form-textarea {
+    height: 200px;
+    padding: 0.625rem;
+    font-size: 0.8125rem;
+  }
+  
+  /* Экстремальное уменьшение для дат */
+  .route-selection .MuiFormLabel-root {
+    font-size: 0.8125rem;
+  }
+  
+  .route-selection .MuiInputBase-input {
+    font-size: 0.8125rem;
+    padding: 0.5rem;
+  }
+  
+  /* Сверхмалые отступы и шрифты */
+  .summary-info .label {
+    font-size: 0.8125rem;
+    min-width: 90px;
+  }
+  
+  .summary-info .value {
+    font-size: 0.8125rem;
+  }
+  
+  .summary-info .comment-text {
+    font-size: 0.75rem;
+    padding: 0.4375rem;
+    max-height: 100px;
+  }
+  
+  /* Минимизация элементов маршрута */
+  .route-summary,
+  .waybill-info,
+  .time-details {
+    padding: 0.5rem;
+    gap: 0.375rem;
+  }
+  
+  .route-summary span,
+  .waybill-info span {
+    font-size: 0.8125rem;
+  }
+  
+  .time-details {
+    font-size: 0.75rem;
+  }
+  
+  .time-details i,
+  .route-summary i,
+  .waybill-info i {
+    font-size: 0.875rem;
+  }
+  
+  .route-time {
+    font-size: 0.6875rem;
+  }
+}

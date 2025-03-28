@@ -1,0 +1,637 @@
+.profile-card {
+  margin: 1.5rem;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Специфические стили для заголовка профиля */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-header h2 {
+  margin: 0;
+  color: var(--gray-800);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Стили для разных типов заголовков */
+.profile-card:first-child .profile-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.profile-card:last-child .profile-header.form-open {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+/* Основная информация профиля */
+.profile-info {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.info-group {
+  display: grid;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* Строки информации */
+.info-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  width: 100%;
+}
+
+.info-row strong {
+  color: var(--gray-500);
+  font-weight: 500;
+  font-size: 1.125rem;
+}
+
+/* Стили для текстовых полей профиля */
+.info-row > span,
+.contact-display {
+  background-color: var(--gray-50);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--gray-100);
+  font-size: 1.125rem;
+  color: var(--gray-900);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Стили для контактных данных */
+.contact-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.contact-wrapper,
+.contact-form {
+  width: 100%;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.contact-display {
+  justify-content: space-between;
+}
+
+.contact-display span {
+  padding: 0;
+  border: none;
+  background: none;
+  min-height: auto;
+  font-family: 'SF Mono', 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+/* Кнопка редактирования */
+.btn-edit {
+  background: transparent;
+  color: var(--gray-400);
+  border: none;
+  padding: 0.25rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-default);
+  margin-right: -0.25rem;
+}
+
+.btn-edit:hover {
+  background-color: var(--gray-200);
+  color: var(--gray-600);
+}
+
+/* Кнопка смены пароля */
+.btn-change-password {
+  background: var(--gray-700);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition-default);
+  width: auto;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(75, 85, 99, 0.3);
+}
+
+.btn-change-password:hover {
+  background: var(--gray-800);
+  box-shadow: 0 4px 6px rgba(75, 85, 99, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Форма смены пароля */
+.password-form {
+  margin-top: 1.5rem;
+}
+
+.password-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.password-form label {
+  display: block;
+  color: var(--gray-500);
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+}
+
+.password-form input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 1.125rem;
+  background-color: var(--gray-50);
+  height: 48px;
+}
+
+.password-form input:focus {
+  border-color: #4361ee;
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+  outline: none;
+}
+
+/* Уведомления */
+.notification {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out;
+  max-width: 90%;
+  width: auto;
+}
+
+.notification-success {
+  background-color: #10B981;
+  color: white;
+}
+
+.notification-error {
+  background-color: #EF4444;
+  color: white;
+}
+
+.notification i {
+  font-size: 1.25rem;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+/* Медиа запросы и адаптация */
+.profile-info .info-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 0.75rem;
+  padding: 0.375rem 0;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+/* Увеличиваем размеры полей и лейблов */
+.info-group label {
+  color: var(--gray-500);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.info-group input,
+.info-group select {
+  height: 48px;
+  width: 100%;
+  padding: 0 1rem;
+  font-size: 1.125rem;
+  border-radius: 8px;
+}
+
+/* Увеличиваем размеры кнопок */
+.profile-card .btn {
+  height: 48px;
+  padding: 0 1.25rem;
+  font-size: 1.125rem;
+  border-radius: 8px;
+  gap: 0.75rem;
+}
+
+.profile-card .btn i {
+  font-size: 1.25rem;
+  color: white;
+}
+
+/* Медиа запросы */
+@media (max-width: 768px) {
+  .info-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+/* Адаптивные стили для страницы профиля */
+@media (max-width: 1024px) {
+  .profile-card {
+    margin: 1.25rem;
+    padding: 1.25rem;
+  }
+  
+  .profile-header h2 {
+    font-size: 1.375rem;
+  }
+  
+  .info-row strong {
+    font-size: 1rem;
+  }
+  
+  .info-row > span,
+  .contact-display {
+    font-size: 1rem;
+    min-height: 44px;
+    padding: 0.5rem 0.875rem;
+  }
+  
+  .btn-change-password {
+    padding: 0.625rem 1.125rem;
+    font-size: 1rem;
+    gap: 0.625rem;
+  }
+  
+  .password-form label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .password-form input {
+    padding: 0.625rem 0.875rem;
+    font-size: 1rem;
+    height: 44px;
+  }
+  
+  .password-form .form-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  .notification {
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+    gap: 0.625rem;
+  }
+  
+  .notification i {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-card {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .profile-header h2 {
+    font-size: 1.25rem;
+  }
+  
+  .profile-header .btn-change-password {
+    width: 100%;
+    justify-content: center;
+    padding: 0.625rem 1rem;
+  }
+  
+  .profile-info {
+    gap: 1.25rem;
+  }
+  
+  .info-row {
+    grid-template-columns: 1fr;
+    gap: 0.375rem;
+  }
+  
+  .info-row strong {
+    padding-left: 0.25rem;
+    color: var(--gray-600);
+    font-size: 0.875rem;
+  }
+  
+  .info-row > span,
+  .contact-display {
+    font-size: 0.9375rem;
+    min-height: 40px;
+    padding: 0.4375rem 0.75rem;
+  }
+  
+  .contact-wrapper,
+  .contact-form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .contact-field {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .btn-edit {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .contact-display {
+    position: relative;
+    padding-right: 2.5rem;
+  }
+  
+  .password-form label {
+    font-size: 0.9375rem;
+  }
+  
+  .password-form input {
+    font-size: 0.9375rem;
+    height: 40px;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .info-group label {
+    font-size: 1rem;
+  }
+  
+  .info-group input,
+  .info-group select {
+    height: 40px;
+    font-size: 1rem;
+    padding: 0 0.75rem;
+  }
+  
+  .profile-card .btn {
+    height: 40px;
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .notification {
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 476px) {
+  .profile-card {
+    margin: 0.75rem;
+    padding: 0.875rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+  
+  .profile-header h2 {
+    font-size: 1.125rem;
+  }
+  
+  .profile-card:first-child .profile-header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  .profile-card:last-child .profile-header.form-open {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  .profile-info {
+    gap: 1rem;
+  }
+  
+  .info-group {
+    gap: 0.5rem;
+  }
+  
+  .info-row strong {
+    font-size: 0.8125rem;
+  }
+  
+  .info-row > span,
+  .contact-display {
+    font-size: 0.875rem;
+    min-height: 38px;
+    padding: 0.375rem 0.625rem;
+  }
+  
+  .btn-change-password {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.875rem;
+    gap: 0.5rem;
+    border-radius: 6px;
+  }
+  
+  .btn-change-password i {
+    font-size: 0.875rem;
+  }
+  
+  .password-form {
+    margin-top: 1rem;
+  }
+  
+  .password-form .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .password-form label {
+    font-size: 0.875rem;
+    margin-bottom: 0.375rem;
+  }
+  
+  .password-form input {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.875rem;
+    height: 36px;
+    border-radius: 6px;
+  }
+  
+  .info-group label {
+    font-size: 0.875rem;
+  }
+  
+  .info-group input,
+  .info-group select {
+    height: 36px;
+    font-size: 0.875rem;
+    padding: 0 0.625rem;
+    border-radius: 6px;
+  }
+  
+  .profile-card .btn {
+    height: 36px;
+    padding: 0 0.875rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    gap: 0.5rem;
+  }
+  
+  .profile-card .btn i {
+    font-size: 1rem;
+  }
+  
+  .notification {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    max-width: 90%;
+    border-radius: 6px;
+    top: 0.75rem;
+  }
+  
+  .notification i {
+    font-size: 1rem;
+  }
+
+  .profile-card .btn-icon i {
+    color: var(--gray-500);
+  }
+  
+  /* Адаптация для маленьких экранов */
+  .info-row {
+    position: relative;
+  }
+  
+  .contact-display {
+    padding-right: 2.5rem;
+  }
+  
+  .btn-edit {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+  }
+
+  .info-row form {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  
+  .info-row form .btn {
+    min-width: 100%;
+    justify-content: center;
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Переопределение цвета иконок в кнопках профиля */
+  .profile-card .btn-success i,
+  .profile-card .btn-secondary i {
+    color: white !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .profile-card {
+    margin: 0.5rem;
+    padding: 0.75rem;
+  }
+  
+  .p-4 {
+    padding: var(--spacing-md);
+  }
+
+  .profile-header h2 {
+    font-size: 1rem;
+  }
+  
+  .info-row strong {
+    font-size: 0.75rem;
+  }
+  
+  .info-row > span,
+  .contact-display {
+    font-size: 0.8125rem;
+    min-height: 36px;
+    padding: 0.3125rem 0.5rem;
+  }
+  
+  .btn-change-password {
+    font-size: 0.8125rem;
+    padding: 0.4375rem 0.75rem;
+  }
+  
+  .password-form input {
+    font-size: 0.8125rem;
+    height: 34px;
+  }
+  
+  .profile-card .btn {
+    height: 34px;
+    font-size: 0.8125rem;
+  }
+  
+  .btn-edit {
+    width: 28px;
+    height: 28px;
+    font-size: 0.875rem;
+  }
+}
+
+/* Переопределение цвета иконок в кнопках профиля с наивысшим приоритетом */
+.profile-card .btn-success i,
+.profile-card .btn-secondary i,
+.card .btn-success i,
+.card .btn-secondary i {
+  color: white !important;
+}

@@ -1,0 +1,87 @@
+/* Специфические стили только для страницы логина */
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+}
+
+/* Специфические стили для формы логина */
+.login-container .card {
+  max-width: 400px;
+  width: 90%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.login-container .card-header {
+  text-align: center;
+}
+
+.login-container .card-header h1 {
+  color: var(--gray-900);
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.login-form {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-header h1 {
+  color: var(--gray-900);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+/* Специфические стили для кнопки входа */
+.login-btn {
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.login-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+/* Оставляем только специфический стиль для сообщения об ошибке */
+.error-message {
+  color: var(--danger-color);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Анимация появления формы */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
