@@ -21,12 +21,12 @@ jobs:
       - name: Установка зависимостей клиента
         run: |
           cd client
-          npm ci
+          npm install
           
       - name: Установка зависимостей сервера
         run: |
           cd server
-          npm ci
+          npm install
           
       - name: Линтинг клиентского кода
         run: |
