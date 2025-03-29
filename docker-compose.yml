@@ -15,11 +15,11 @@ services:
       - DB_NAME=${DB_NAME}
     volumes:
       - ./server/uploads:/app/uploads
-    user: "1000:1000"
     depends_on:
       - postgres
     networks:
       - app-network
+    user: "1000:1000"
 
   client:
     build: ./client
@@ -32,7 +32,7 @@ services:
       - REACT_APP_SOCKET_URL=${SOCKET_URL}
     networks:
       - app-network
-
+    user: "1000:1000"
   postgres:
     image: postgres:14-alpine
     container_name: postgres
@@ -47,7 +47,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
     networks:
       - app-network
-
+    user: "1000:1000"
   nginx:
     image: nginx:alpine
     container_name: nginx
@@ -61,7 +61,7 @@ services:
       - server
     networks:
       - app-network
-
+    user: "1000:1000"
 networks:
   app-network:
     driver: bridge
