@@ -2,14 +2,35 @@ FROM node:18-alpine as build
 
 WORKDIR /app
 
+# Копируем файлы package.json и package-lock.json
 COPY package*.json ./
-RUN npm install
 
+# Устанавливаем зависимости
+RUN npm ci
+
+# Копируем исходный код клиента
 COPY . .
+
+# Передаем переменные окружения во время сборки
+ARG REACT_APP_API_URL
+ARG REACT_APP_SOCKET_URL
+ENV REACT_APP_API_URL=${REACT_APP_API_URL}
+ENV REACT_APP_SOCKET_URL=${REACT_APP_SOCKET_URL}
+
+# Собираем статические файлы
 RUN npm run build
 
+# Этап запуска
 FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
-EXPOSE 3000
 
+# Копируем конфигурацию Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Копируем собранные файлы из этапа сборки
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Открываем порт
+EXPOSE 80
+
+# Запускаем Nginx
 CMD ["nginx", "-g", "daemon off;"] 
