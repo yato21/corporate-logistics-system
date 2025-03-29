@@ -26,7 +26,4 @@ FROM nginx:alpine
 # Копируем собранные файлы из этапа сборки
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Копируем конфигурацию nginx (не требуется, так как будем использовать внешний nginx.conf)
-EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"] 
