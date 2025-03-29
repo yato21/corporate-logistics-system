@@ -98,8 +98,8 @@ server/
 
 1. Клонирование репозитория
    ```bash
-   git clone <url-репозитория>
-   cd <название-проекта>
+   git clone https://github.com/yato21/corporate-logistics-system
+   cd corporate-logistics-system
    ```
 
 2. Установка зависимостей:
