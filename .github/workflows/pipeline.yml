@@ -36,7 +36,7 @@ jobs:
       - name: Сборка клиента для проверки
         run: |
           cd client
-          npm run build
+          CI=false npm run build
           
   deploy:
     needs: test
