@@ -14,17 +14,14 @@ class SocketService {
     if (this.socket?.connected) return;
 
     const token = localStorage.getItem('token');
-    const SOCKET_URL = process.env.NODE_ENV === 'production' 
-      ? '' // В продакшне используем относительный путь
-      : (process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000');
+    const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
     
     this.socket = io(SOCKET_URL, {
       path: '/socket.io',
       auth: { token },
       reconnection: true,
       reconnectionDelay: 3000,
-      reconnectionAttempts: 5,
-      transports: ['websocket', 'polling'] // Явно указываем транспорты
+      reconnectionAttempts: 5
     });
 
     this.socket.on('connect', () => {

@@ -1,32 +1,30 @@
-# Этап сборки
-FROM node:alpine as build
+FROM node:18-alpine as build
 
 WORKDIR /app
 
 COPY package*.json ./
+
 RUN npm install
 
 COPY . .
 
-# Аргументы сборки, передаются из docker-compose
+# Устанавливаем переменные окружения для сборки
 ARG REACT_APP_API_URL
-ENV REACT_APP_API_URL=$REACT_APP_API_URL
-ENV NODE_ENV=production
+ARG REACT_APP_SOCKET_URL
+ENV REACT_APP_API_URL=${REACT_APP_API_URL}
+ENV REACT_APP_SOCKET_URL=${REACT_APP_SOCKET_URL}
 
 RUN npm run build
 
-# Этап продакшн
+# Используем nginx для раздачи собранных файлов
 FROM nginx:alpine
 
-# Копируем статические файлы из этапа сборки
+# Копируем собранные файлы из первого этапа
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Удаляем стандартный конфиг Nginx
-RUN rm /etc/nginx/conf.d/default.conf
+# Копируем конфигурацию nginx
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Добавляем собственный конфиг
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["nginx", "-g", "daemon off;"] 
