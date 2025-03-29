@@ -1,5 +1,5 @@
 # Этап сборки
-FROM node:16-alpine as build
+FROM node:16-alpine
 
 # Создаем директорию приложения
 WORKDIR /app
@@ -20,10 +20,5 @@ ENV REACT_APP_SOCKET_URL=http://${DOMAIN}
 # Собираем приложение
 RUN npm run build
 
-# Этап запуска - используем nginx для раздачи статических файлов
-FROM nginx:alpine
-
-# Копируем собранные файлы из этапа сборки
-COPY --from=build /app/build /usr/share/nginx/html
-
-CMD ["nginx", "-g", "daemon off;"] 
+# Создаем команду, которая будет держать контейнер активным
+CMD ["tail", "-f", "/dev/null"] 
