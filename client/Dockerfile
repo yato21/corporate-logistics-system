@@ -29,8 +29,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Копируем собранные файлы из этапа сборки
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Открываем порт
+# Экспортируем порт
 EXPOSE 80
 
-# Запускаем Nginx
-CMD ["nginx", "-g", "daemon off;"] 
+# Nginx запускается автоматически 

@@ -8,9 +8,9 @@ RUN apk add --no-cache python3 make g++
 # Копируем package.json
 COPY package*.json ./
 
-# Устанавливаем зависимости и пересобираем нативные модули
-RUN npm ci --production
-RUN npm rebuild bcrypt --build-from-source
+# Устанавливаем зависимости и пересобираем bcrypt
+RUN npm install --omit=dev && \
+    npm rebuild bcrypt --build-from-source
 
 # Копируем код приложения
 COPY . .
@@ -21,5 +21,5 @@ RUN mkdir -p uploads
 # Открываем порт
 EXPOSE 5000
 
-# Запускаем сервер
+# Команда для запуска приложения
 CMD ["node", "server.js"] 
