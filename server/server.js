@@ -91,6 +91,11 @@ require('./routes/dispatcher.routes')(app);
 // Статические файлы
 app.use('/uploads', express.static('uploads'));
 
+// Настройка Trust Proxy для получения реальных IP позади Nginx
+app.set('trust proxy', true);
+
+// Теперь requests.ip будет содержать реальный IP запроса, а не IP Nginx
+
 // Запуск сервера
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {

@@ -1,24 +1,32 @@
 # Этап сборки
-FROM node:16-alpine
+FROM node:alpine as build
 
-# Создаем директорию приложения
 WORKDIR /app
 
-# Копируем файлы package.json и package-lock.json
 COPY package*.json ./
-
-# Устанавливаем зависимости
 RUN npm install
 
-# Копируем остальные файлы проекта
 COPY . .
 
-# Устанавливаем переменные окружения для сборки
-ENV REACT_APP_API_URL=http://${DOMAIN}/api
-ENV REACT_APP_SOCKET_URL=http://${DOMAIN}
+# Аргументы сборки, передаются из docker-compose
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
+ENV NODE_ENV=production
 
-# Собираем приложение
 RUN npm run build
 
-# Создаем команду, которая будет держать контейнер активным
-CMD ["tail", "-f", "/dev/null"] 
+# Этап продакшн
+FROM nginx:alpine
+
+# Копируем статические файлы из этапа сборки
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Удаляем стандартный конфиг Nginx
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Добавляем собственный конфиг
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"] 
