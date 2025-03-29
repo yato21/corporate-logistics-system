@@ -12,8 +12,8 @@ services:
     depends_on:
       - client
       - server
-    environment:
-      - DOMAIN=${DOMAIN}
+    # Используем template для nginx
+    command: /bin/sh -c "nginx -g 'daemon off;'"
     restart: always
 
   # Клиентская часть (React)
