@@ -12,8 +12,9 @@ services:
     depends_on:
       - client
       - server
-    # Используем template для nginx
-    command: /bin/sh -c "nginx -g 'daemon off;'"
+    # Добавляем пользователя nginx
+    user: nginx
+    command: /bin/sh -c "chmod 644 /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
     restart: always
 
   # Клиентская часть (React)
