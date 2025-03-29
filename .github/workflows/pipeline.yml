@@ -1,0 +1,66 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Проверка кода
+        uses: actions/checkout@v3
+        
+      - name: Настройка Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Установка зависимостей клиента
+        run: |
+          cd client
+          npm ci
+          
+      - name: Установка зависимостей сервера
+        run: |
+          cd server
+          npm ci
+          
+      - name: Линтинг клиентского кода
+        run: |
+          cd client
+          npm run lint || true
+          
+      - name: Сборка клиента для проверки
+        run: |
+          cd client
+          npm run build
+          
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Проверка кода
+        uses: actions/checkout@v3
+
+      - name: Настройка SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          
+      - name: Добавление хоста в известные хосты
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Деплой приложения
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd ${{ secrets.PROJECT_PATH }} && \
+          git checkout master && \
+          git pull && \
+          cp .env.production .env && \
+          docker-compose down && \
+          docker-compose up -d --build"
