@@ -112,8 +112,18 @@ server/
    cd ../server
    npm install
    ```
+3. Настройка переменных окружения
+   ```bash
+   # Скопировать пример файла окружения
+   cp .env.example .env
+   
+   # Отредактировать файл .env, указав свои значения для:
+   # - DB_HOST, DB_USER, DB_PASSWORD, DB_NAME - параметры подключения к базе данных
+   # - JWT_SECRET - секретный ключ для JWT аутентификации
+   # - SERVER_HOST - хост сервера
+   ```
 
-3. Запуск проекта в режиме разработки:
+4. Запуск проекта в режиме разработки:
    ```bash
    # Запуск сервера
    cd server
@@ -124,8 +134,62 @@ server/
    npm start
    ```
 
-4. Сборка проекта:
+5. Сборка проекта:
    ```bash
    cd client
    npm run build
+   ```
+
+## Развертывание на сервере
+
+Проект настроен для развертывания с использованием Docker и docker-compose на сервере Fedora Linux.
+
+1. Клонирование репозитория на сервер:
+   ```bash
+   git clone https://github.com/yato21/corporate-logistics-system
+   cd corporate-logistics-system
+   ```
+
+2. Настройка переменных окружения:
+   ```bash
+   cp .env.example .env
+   
+   # Отредактировать .env файл с учетом производственного окружения
+   # Обязательно укажите:
+   # - DB_HOST=postgres (имя сервиса базы данных в docker-compose)
+   # - DB_USER, DB_PASSWORD, DB_NAME
+   # - JWT_SECRET (используйте сложный случайный ключ)
+   # - NODE_ENV=production
+   # - SERVER_HOST (доменное имя или IP-адрес сервера)
+   ```
+
+3. Сборка и запуск контейнеров:
+   ```bash
+   docker-compose up -d --build
+   ```
+
+4. Инициализация базы данных (при первом запуске):
+   ```bash
+   # Выполнение миграций и заполнение начальными данными
+   docker-compose exec server npm run init-db
+   ```
+
+5. Проверка работоспособности:
+   ```bash
+   # Проверка логов сервера
+   docker-compose logs -f server
+   
+   # Проверка логов клиента
+   docker-compose logs -f client
+   ```
+
+6. Доступ к приложению:
+   - Клиентское приложение будет доступно по адресу: http://ваш_домен или http://IP_сервера
+   - API сервер будет доступен по адресу: http://ваш_домен/api или http://IP_сервера/api
+
+7. Обновление приложения:
+   ```bash
+   git pull
+   docker-compose down
+   docker-compose up -d --build
    ```
