@@ -21,9 +21,5 @@ RUN mkdir -p uploads
 # Открываем порт
 EXPOSE 5000
 
-# Создаем скрипт инициализации
-RUN echo '#!/bin/sh\nnpm run init-db || true\nexec node server.js' > /app/entrypoint.sh && \
-    chmod +x /app/entrypoint.sh
-
-# Команда для запуска приложения через скрипт
-CMD ["/app/entrypoint.sh"] 
+# Команда для запуска приложения
+CMD ["node", "server.js"] 
