@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./client/build:/usr/share/nginx/html
     depends_on:
       - client
@@ -61,4 +61,4 @@ services:
 volumes:
   postgres_data:
   server_uploads:
-  client_build: 
+  client_build:
