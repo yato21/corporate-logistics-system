@@ -1,0 +1,61 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - name: Проверка кода
+        uses: actions/checkout@v3
+        
+      - name: Настройка Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Установка зависимостей клиента
+        run: |
+          cd client
+          npm install
+          
+      - name: Установка зависимостей сервера
+        run: |
+          cd server
+          npm install
+          
+      - name: Линтинг клиентского кода
+        run: |
+          cd client
+          npm run lint || true
+          
+      - name: Сборка клиента для проверки
+        run: |
+          cd client
+          CI=false npm run build
+          
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+    runs-on: self-hosted
+    steps:
+      - name: Проверка кода
+        uses: actions/checkout@v3
+      
+      - name: Деплой приложения
+        run: |
+          # Используем существующий файл .env.production с сервера
+          if [ -f "/home/yato/production_env/.env.production" ]; then
+            cp /home/yato/production_env/.env.production .env
+          else
+            echo "Файл с переменными окружения не найден!"
+            exit 1
+          fi
+          
+          # Останавливаем и перезапускаем контейнеры
+          docker-compose down
+          docker-compose up -d --build

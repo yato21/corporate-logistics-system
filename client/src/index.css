@@ -1,0 +1,1242 @@
+:root {
+  /* Корпоративная цветовая схема */
+  --primary-color: #3b82f6;      /* Синий */
+  --secondary-color: #2c5282;    /* Синий */
+  --accent-color: #4361ee;       /* Яркий синий */
+  --success-color: #10b981;      /* Зеленый */
+  --warning-color: #f59e0b;      /* Оранжевый */
+  --danger-color: #ef4444;        /* Красный */
+  --info-color: #6366f1;         /* Индиго */
+  
+  /* Нейтральные цвета */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  
+  /* Размеры и отступы */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 2.5rem;
+  
+  /* Тени */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  
+  /* Скругления */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-xxl: 1rem;
+  
+  --accent-hover: #3651d4;
+  
+  /* Обновленные цвета для статусов */
+  --status-yellow-bg: #FEF3C7;
+  --status-yellow-text: #92400E;
+  --status-blue-bg: #DBEAFE;
+  --status-blue-text: #1E40AF;
+  --status-green-bg: #D1FAE5;
+  --status-green-text: #065F46;
+  --status-red-bg: #FEE2E2;
+  --status-red-text: #991B1B;
+  --status-purple-bg: #F3E8FF;
+  --status-purple-text: #9333EA;
+  
+  /* Дополнительные размеры и параметры */
+  --input-height: 48px;
+  --button-height: 40px;
+  --button-height-lg: 48px;
+  --border-radius-default: 8px;
+  --border-radius-lg: 12px;
+  
+  /* Стили для фокуса */
+  --focus-ring: 0 0 0 3px rgba(67, 97, 238, 0.15);
+  
+  /* Переходные эффекты */
+  --transition-default: all 0.2s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--gray-700);
+}
+
+/* Типография */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gray-800);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+/* ============ Стили для форм ============ */
+.form-group {
+  margin-bottom: var(--spacing-lg);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group label {
+  display: block;
+  color: var(--gray-700);
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.125rem;
+}
+
+.form-control,
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius-default);
+  font-size: 1.125rem;
+  transition: var(--transition-default);
+  background: var(--gray-50);
+  height: var(--input-height);
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-control:focus,
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--accent-color);
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+.form-control:disabled,
+.form-input:disabled,
+.form-select:disabled {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+  cursor: not-allowed;
+}
+
+.form-textarea {
+  min-height: 120px;
+  height: auto;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.form-textarea::placeholder {
+  color: var(--gray-400);
+}
+
+.form-error {
+  color: var(--danger-color);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-xs);
+}
+
+/* Стили для полей ввода даты и времени */
+input[type="datetime-local"], 
+input[type="date"], 
+input[type="time"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius-default);
+  font-size: 1.125rem;
+  background: var(--gray-50);
+  height: var(--input-height);
+  box-sizing: border-box;
+}
+
+/* ============ Стили для кнопок ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border: none;
+  border-radius: var(--border-radius-default);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-default);
+  white-space: nowrap;
+  min-width: fit-content;
+  height: var(--button-height);
+}
+
+/* Градиентная кнопка (основная) */
+.btn-primary {
+  background: linear-gradient(to right, #4361ee, #3730a3);
+  color: white;
+  box-shadow: 0 2px 4px rgba(67, 97, 238, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 6px rgba(67, 97, 238, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Кнопка успеха */
+.btn-success {
+  background: linear-gradient(to right, #2f855a, #1a653b);
+  color: white;
+  box-shadow: 0 2px 4px rgba(47, 133, 90, 0.3);
+}
+
+.btn-success:hover {
+  box-shadow: 0 4px 6px rgba(47, 133, 90, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Кнопка отмены/удаления */
+.btn-danger {
+  background: linear-gradient(to right, #c53030, #9b2c2c);
+  color: white;
+  box-shadow: 0 2px 4px rgba(197, 48, 48, 0.3);
+}
+
+.btn-danger:hover {
+  box-shadow: 0 4px 6px rgba(197, 48, 48, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Вторичная кнопка */
+.btn-secondary {
+  background: linear-gradient(to right, #4b5563, #374151);
+  color: white;
+  box-shadow: 0 2px 4px rgba(75, 85, 99, 0.3);
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 4px 6px rgba(75, 85, 99, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Кнопка с иконкой */
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--border-radius-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: var(--transition-default);
+}
+
+.btn-icon:hover {
+  background-color: var(--gray-100);
+  color: var(--gray-900);
+}
+
+.btn-icon i {
+  font-size: 1.25rem;
+}
+
+/* Кнопка предупреждения */
+.btn-warning {
+  background: linear-gradient(to right, #F59E0B, #D97706);
+  color: white;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.btn-warning:hover {
+  box-shadow: 0 4px 6px rgba(245, 158, 11, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Размеры кнопок */
+.btn-lg {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.125rem;
+  height: var(--button-height-lg);
+}
+
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  height: 32px;
+}
+
+.btn-sm i {
+  font-size: 0.875rem;
+}
+
+/* Состояние отключенных кнопок */
+.btn:disabled,
+.btn-icon:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: var(--gray-300);
+  transform: none;
+  box-shadow: none;
+}
+
+.btn:disabled:hover,
+.btn-icon:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ============ Стили для модальных окон ============ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: modalAppear 0.3s ease-out;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.modal-header h2,
+.modal-header h3 {
+  margin: 0;
+  color: var(--gray-900);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--gray-100);
+  color: var(--gray-600);
+  border-radius: var(--border-radius-default);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-default);
+  z-index: 100;
+}
+
+.modal-close:hover {
+  background: var(--gray-200);
+  color: var(--gray-900);
+}
+
+.modal-close i {
+  font-size: 1.25rem;
+}
+
+.modal-body {
+  margin-bottom: var(--spacing-lg);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--gray-200);
+}
+
+/* ============ Стили для карточек и контейнеров ============ */
+.card {
+  background-color: white;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-100);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 300px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.card-header h2,
+.card-header h3 {
+  margin: 0;
+  color: var(--gray-900);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.card-body {
+  margin-bottom: var(--spacing-lg);
+}
+
+.card-section {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: var(--border-radius-lg);
+}
+
+.card-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--spacing-md);
+  font-size: 1.25rem;
+  color: var(--gray-800);
+  font-weight: 600;
+}
+
+.card-section-title i {
+  color: var(--accent-color);
+  font-size: 1.25rem;
+}
+
+/* Стили для формы авторизации */
+.login-container .card {
+  max-width: 400px;
+  width: 90%;
+}
+
+/* ============ Стили для статусов и значков ============ */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-default);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  height: 36px;
+  white-space: nowrap;
+}
+
+.status-pending { 
+  background-color: var(--status-yellow-bg); 
+  color: var(--status-yellow-text); 
+}
+
+.status-assigned { 
+  background-color: var(--status-purple-bg); 
+  color: var(--status-purple-text); 
+}
+
+.status-in-progress,
+.status-in_progress { 
+  background-color: var(--status-blue-bg); 
+  color: var(--status-blue-text); 
+}
+
+.status-completed { 
+  background-color: var(--status-green-bg); 
+  color: var(--status-green-text); 
+}
+
+.status-cancelled { 
+  background-color: var(--status-red-bg); 
+  color: var(--status-red-text); 
+}
+
+/* ============ Стили для уведомлений ============ */
+.notification {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-default);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  animation: slideDownCentered 0.3s ease-out;
+  max-width: 90%;
+  width: auto;
+  color: white;
+}
+
+.notification-success {
+  background-color: var(--success-color);
+}
+
+.notification-error {
+  background-color: var(--danger-color);
+}
+
+.notification-warning {
+  background-color: var(--warning-color);
+}
+
+.notification-info {
+  background-color: var(--info-color);
+}
+
+.notification i {
+  font-size: 1rem;
+}
+
+/* ============ Общие анимации ============ */
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDownCentered {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============ Стили для скроллбаров ============ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============ Утилиты ============ */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+.d-flex { display: flex; }
+.flex-column { flex-direction: column; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: flex-end; }
+.align-center { align-items: center; }
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+
+.gap-1 { gap: var(--spacing-xs); }
+.gap-2 { gap: var(--spacing-sm); }
+.gap-3 { gap: var(--spacing-md); }
+.gap-4 { gap: var(--spacing-lg); }
+.gap-5 { gap: var(--spacing-xl); }
+
+.rounded { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: 9999px; }
+
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+.border { border: 1px solid var(--gray-200); }
+.border-t { border-top: 1px solid var(--gray-200); }
+.border-b { border-bottom: 1px solid var(--gray-200); }
+
+.gradient-text {
+  background: linear-gradient(to right, #4361ee, #3730a3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+/* Группировка кнопок */
+.btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-group-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Добавить класс для меньшего отступа */
+.form-group-sm {
+  margin-bottom: var(--spacing-md); /* 1rem */
+}
+
+/* Добавить класс для bigger отступа */
+.form-group-lg {
+  margin-bottom: var(--spacing-xl); /* 2rem */
+}
+
+/* Добавляем в index.css общие стили для предотвращения переполнения */
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  box-sizing: border-box;
+}
+
+.col {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  box-sizing: border-box;
+  min-width: 0; /* Важно для предотвращения переполнения */
+}
+
+/* Стили для предотвращения переполнения текста */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Общие стили box-sizing для всех элементов */
+* {
+  box-sizing: border-box;
+}
+
+
+/* Улучшение адаптивности для кнопок, форм и типографики */
+@media (max-width: 1025px) {
+  /* Типографика */
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.125rem; }
+  h5 { font-size: 1rem; }
+  h6 { font-size: 0.9375rem; }
+  
+  /* Кнопки */
+  .btn {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.9375rem;
+    height: 38px;
+  }
+  
+  .btn-lg {
+    padding: 0.625rem 1.125rem;
+    font-size: 1rem;
+    height: 44px;
+  }
+  
+  /* Формы */
+  .form-control,
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 0.625rem 0.875rem;
+    font-size: 1rem;
+    height: 44px;
+  }
+  
+  .form-group label {
+    font-size: 1rem;
+    margin-bottom: 0.375rem;
+  }
+  
+  /* Поля даты */
+  input[type="datetime-local"], 
+  input[type="date"], 
+  input[type="time"] {
+    padding: 0.625rem 0.875rem;
+    font-size: 1rem;
+    height: 44px;
+  }
+}
+
+@media (max-width: 769px) {
+  /* Типографика */
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.375rem; }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.125rem; }
+  h5 { font-size: 1rem; }
+  h6 { font-size: 0.875rem; }
+  
+  /* Кнопки */
+  .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    height: 36px;
+    border-radius: 6px;
+  }
+  
+  .btn-lg {
+    padding: 0.625rem 1rem;
+    font-size: 0.9375rem;
+    height: 40px;
+  }
+  
+  .btn-sm {
+    padding: 0.3125rem 0.625rem;
+    font-size: 0.8125rem;
+    height: 28px;
+  }
+  
+  .btn i {
+    font-size: 0.9375rem;
+  }
+  
+  .btn-sm i {
+    font-size: 0.8125rem;
+  }
+  
+  /* Формы */
+  .form-control,
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9375rem;
+    height: 40px;
+    border-radius: 6px;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    font-size: 0.9375rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Поля даты и времени */
+  input[type="datetime-local"], 
+  input[type="date"], 
+  input[type="time"] {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9375rem;
+    height: 40px;
+    border-radius: 6px;
+  }
+  
+  /* Уведомления */
+  .notification {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+    max-width: 85%;
+  }
+  
+  /* Отступы контейнера */
+  .container-fluid {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  
+  .row {
+    margin-right: -12px;
+    margin-left: -12px;
+  }
+  
+  .col {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 1rem;
+  }
+  
+  .modal-close i {
+    font-size: 1rem;
+  }
+  
+  .default-modal .modal-close {
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .task-modal .modal-close {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .modal-header {
+    padding-top: 1.25rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Дополнение существующих стилей для разрешения 426px */
+@media (max-width: 426px) {
+  /* Общая типографика */
+  body {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  
+  h1 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+  h2 { font-size: 1.125rem; margin-bottom: 0.75rem; }
+  h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+  h4 { font-size: 0.9375rem; margin-bottom: 0.5rem; }
+  h5 { font-size: 0.875rem; margin-bottom: 0.375rem; }
+  h6 { font-size: 0.8125rem; margin-bottom: 0.375rem; }
+  
+  /* Улучшение стилей кнопок */
+  .btn {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.8125rem;
+    height: 34px;
+    border-radius: 6px;
+    gap: 0.375rem;
+  }
+  
+  .btn-lg {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    height: 38px;
+  }
+  
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    height: 26px;
+  }
+  
+  .btn i {
+    font-size: 0.875rem;
+  }
+  
+  .btn-sm i {
+    font-size: 0.75rem;
+  }
+  
+  .btn-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .btn-icon i {
+    font-size: 1rem;
+  }
+  
+  /* Формы */
+  .form-group {
+    margin-bottom: 0.75rem;
+  }
+  
+  .form-group-lg {
+    margin-bottom: 1.25rem;
+  }
+  
+  .form-group label {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .form-control,
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.875rem;
+    height: 36px;
+    border-radius: 6px;
+  }
+  
+  /* Уведомления */
+  .notification {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    max-width: 80%;
+    gap: 0.375rem;
+  }
+  
+  .notification i {
+    font-size: 0.875rem;
+  }
+  
+  /* Контейнеры */
+  .container-fluid {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  
+  .row {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+  
+  .col {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  
+  /* Переопределение переменных */
+  :root {
+    --spacing-md: 0.75rem;
+    --spacing-lg: 1.25rem;
+    --spacing-xl: 1.5rem;
+    --spacing-xxl: 2rem;
+  }
+
+  /* Настройка стиля полей даты */
+  input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    color: #6b7280;
+    font-size: 0.875rem;
+    padding: 0 8px;
+    height: 40px;
+  }
+  
+  /* Стиль иконки календаря */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 16px;
+    height: 16px;
+    background-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Изменение цвета placeholder'а на более заметный */
+  input[type="date"]::placeholder {
+    color: #9ca3af;
+  }
+
+  .modal-close {
+    width: 28px;
+    height: 28px;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .modal-close i {
+    font-size: 0.875rem;
+  }
+  
+  .default-modal .modal-close {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+  
+  .task-modal .modal-close {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .modal-header {
+    padding-top: 1rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.125rem;
+  }
+}
+
+/* Дополнение существующих стилей для очень малых экранов (376px) */
+@media (max-width: 376px) {
+  /* Ещё более мелкая типографика */
+  h1 { font-size: 1.125rem; }
+  h2 { font-size: 1rem; }
+  h3 { font-size: 0.9375rem; }
+  h4 { font-size: 0.875rem; }
+  h5 { font-size: 0.8125rem; }
+  h6 { font-size: 0.75rem; }
+  
+  /* Еще меньше кнопки */
+  .btn {
+    padding: 0.3125rem 0.5rem;
+    font-size: 0.75rem;
+    height: 32px;
+    border-radius: 5px;
+    gap: 0.25rem;
+  }
+  
+  .btn-lg {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.8125rem;
+    height: 36px;
+  }
+  
+  .btn-sm {
+    padding: 0.1875rem 0.375rem;
+    font-size: 0.6875rem;
+    height: 24px;
+  }
+  
+  .btn i {
+    font-size: 0.8125rem;
+  }
+  
+  .btn-sm i {
+    font-size: 0.6875rem;
+  }
+  
+  .btn-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .btn-icon i {
+    font-size: 0.875rem;
+  }
+  
+  /* Компактные формы */
+  .form-group {
+    margin-bottom: 0.625rem;
+  }
+  
+  .form-group-lg {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    font-size: 0.8125rem;
+    margin-bottom: 0.1875rem;
+  }
+  
+  .form-control,
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 0.3125rem 0.5rem;
+    font-size: 0.8125rem;
+    height: 32px;
+  }
+  
+  /* Сверхкомпактные уведомления */
+  .notification {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.6875rem;
+    max-width: 75%;
+  }
+  
+  /* Контейнеры */
+  .container-fluid {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  
+  .row {
+    margin-right: -8px;
+    margin-left: -8px;
+  }
+  
+  .col {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  
+  /* Переопределение переменных */
+  :root {
+    --spacing-md: 0.625rem;
+    --spacing-lg: 1rem;
+    --spacing-xl: 1.25rem;
+    --spacing-xxl: 1.5rem;
+  }
+
+  input[type="date"] {
+    font-size: 0.75rem;
+    padding: 0 4px;
+    height: 32px;
+    min-width: 0;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 14px;
+    height: 14px;
+    background-size: 14px;
+  }
+  
+  /* Более компактное отображение */
+  .date-range {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Размер полей дат для малых экранов */
+  .date-input {
+    width: calc(50% - (24px / 2));
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
+  
+  /* Стиль для сепаратора между датами */
+  .date-separator {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 18px;
+    text-align: center;
+    padding: 0 3px;
+    font-size: 0.75rem;
+  }
+
+  .modal-close {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+  
+  .modal-close i {
+    font-size: 0.75rem;
+  }
+
+  .modal-header {
+    padding-top: 0.875rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .modal-header h2 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+}

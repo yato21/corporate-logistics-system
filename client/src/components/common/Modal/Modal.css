@@ -1,0 +1,235 @@
+/* Общие стили для оверлея */
+.modal-overlay,
+.confirmation-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+/* Общие стили для модальных окон с прокруткой */
+.modal-content.default-modal,
+.modal-content.task-modal {
+  max-height: 80vh;
+}
+
+/* Стили для заголовков и текста */
+.modal-content h3 {
+  margin: 0 0 1rem 0;
+  color: var(--gray-900);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.modal-content p {
+  margin: 0 0 1.5rem 0;
+  color: var(--gray-700);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Стили для кнопок подтверждения */
+.confirmation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.confirmation-actions .btn {
+  min-width: 60px;
+  padding: 0.625rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Стили для модального окна с карточкой заказа */
+.task-modal .task-card {
+  margin: 0;
+  box-shadow: none;
+  border-radius: 12px;
+}
+
+.task-modal .task-card-container {
+  border: none;
+  box-shadow: none;
+}
+
+.task-modal .task-info-section {
+  padding: 1.5rem;
+  margin: 0;
+  background: none;
+}
+
+.task-modal .task-info-section:not(:last-child) {
+  border-bottom: 1px solid var(--gray-200);
+}
+
+/* Стили для заголовка в модальном окне с задачей */
+.task-modal .task-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.task-modal .task-card-header {
+  position: relative;
+}
+
+.task-modal .task-status-container {
+  margin-top: 2.5rem;
+}
+
+.task-modal .task-card-title {
+  flex: 1;
+}
+
+/* Специфические стили для разных типов модальных окон */
+.task-modal {
+  max-width: 1200px;
+  padding: 0;
+}
+
+.confirmation-modal {
+  max-width: 400px;
+  padding: var(--spacing-lg);
+}
+
+.order-management-modal {
+  padding: var(--spacing-lg);
+}
+
+/* Адаптивные стили для модальных окон на планшетах */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+  }
+  
+  .modal-content.default-modal {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+  
+  .task-modal {
+    max-width: 90%;
+  }
+  
+  .modal-content h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .modal-content p {
+    font-size: 0.9375rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+  }
+  
+  .confirmation-actions .btn {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.9375rem;
+    border-radius: 6px;
+  }
+  
+  .task-modal .task-info-section {
+    padding: 1.25rem;
+  }
+  
+  .task-modal .task-header {
+    padding: 1.25rem;
+  }
+}
+
+/* Адаптивные стили для модальных окон на мобильных устройствах */
+@media (max-width: 426px) {
+  .modal-content {
+    width: 98%;
+    border-radius: 10px;
+  }
+  
+  .modal-content.default-modal {
+    padding: 1.25rem;
+    max-width: 100%;
+    max-height: 95vh;
+  }
+  
+  .task-modal {
+    max-width: 100%;
+  }
+  
+  .confirmation-modal {
+    max-width: 95%;
+  }
+  
+  .modal-content h3 {
+    font-size: 1rem;
+    margin-bottom: 0.625rem;
+  }
+  
+  .modal-content p {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  .confirmation-actions {
+    flex-direction: column-reverse;
+    gap: 0.625rem;
+  }
+  
+  .confirmation-actions .btn {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+  }
+  
+  .task-modal .task-info-section {
+    padding: 1rem;
+  }
+  
+  .task-modal .task-header {
+    padding: 1rem;
+  }
+  
+  .task-modal .task-status-container {
+    margin-top: 1.5rem;
+  }
+  
+  /* Анимация появления модального окна для мобильных */
+  @keyframes modalAppear {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

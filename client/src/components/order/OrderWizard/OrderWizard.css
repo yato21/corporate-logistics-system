@@ -1,0 +1,317 @@
+.order-wizard {
+  position: relative;
+  background-color: white;
+  margin: 0;
+  box-shadow: none;
+  width: 100%;
+  overflow: hidden; /* Убираем скролл у всего контейнера */
+  max-height: 80vh;
+}
+
+.wizard-sidebar {
+  display: flex;
+  border-right: 1px solid var(--gray-200);
+}
+
+.wizard-main {
+  flex: 1;
+  min-width: 0;
+  padding: 0 1.5rem 0 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  max-height: 95vh; /* Ограничиваем высоту основного контента */
+  overflow-y: auto; /* Добавляем скролл для основного контента */
+}
+
+/* Заголовок остается закрепленным */
+.wizard-main h3 {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 1.5rem 0.5rem;
+  margin-top: 0;
+  z-index: 10;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.steps-progress {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  position: relative;
+  justify-content: space-evenly;
+}
+
+.wizard-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 85px;
+  bottom: 85px;
+  left: 39px;
+  width: 2px;
+  background-color: var(--gray-200);
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.step-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  transition: var(--transition-default);
+  font-size: 1.125rem;
+}
+
+.step-title {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  margin: 0;
+}
+
+.step.active .step-number {
+  background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+  border-color: var(--accent-color);
+  color: white;
+}
+
+.step.active .step-title {
+  color: var(--gray-900);
+  font-weight: 500;
+}
+
+.step.completed .step-number {
+  background: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+}
+
+.step-content {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: visible; /* Контент может выходить за пределы */
+}
+
+/* Кнопки навигации должны быть закреплены внизу */
+.step-navigation {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--gray-200);
+  position: sticky;
+  bottom: -0.01rem;
+  background: white;
+  padding: 1rem 0.5rem;
+  z-index: 10;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+/* Добавляем стили для MUI DateTimePicker */
+.route-selection .MuiTextField-root {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.route-selection .MuiOutlinedInput-root {
+  background-color: white;
+}
+
+.route-selection .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary-color);
+}
+
+.route-selection .MuiInputLabel-root.Mui-focused {
+  color: var(--primary-color);
+}
+
+/* Стили для ошибок */
+.route-selection .MuiFormHelperText-root.Mui-error {
+  color: var(--danger-color);
+  margin-left: 0;
+  margin-top: 4px;
+}
+
+.route-selection .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: var(--danger-color);
+}
+
+@media (max-width: 768px) {
+  .order-wizard {
+    flex-direction: column;
+    gap: 1.25rem;
+    overflow: auto; /* Разрешаем скролл на всём контейнере */
+  }
+  
+  .wizard-sidebar {
+    display: block;
+    width: 100%;
+    padding: 1.25rem 1.25rem 0 1.25rem;
+    border-right: none;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .wizard-main {
+    padding: 0.5rem;
+    max-height: none; /* Убираем ограничение высоты */
+    overflow-y: visible; /* Отключаем отдельный скролл */
+  }
+  
+  /* Улучшенный стиль для прогресса на планшетах */
+  .steps-progress {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.5rem;
+    gap: 0;
+    justify-content: space-between;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .steps-progress::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  .wizard-sidebar::before {
+    width: 0px;
+  }
+  
+  .steps-progress::before {
+    content: '';
+    position: absolute;
+    top: 32px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    width: auto;
+    background-color: var(--gray-200);
+    z-index: 1;
+  }
+  
+  .step {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    width: 20%; /* Равное распределение для 5 шагов */
+    min-width: auto;
+    flex-shrink: 0;
+    padding: 0 4px;
+    box-sizing: border-box;
+  }
+  
+  .step-number {
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 2;
+    background-color: white;
+  }
+  
+  .step-title {
+    font-size: 0.875rem;
+    max-width: 100%;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.2;
+  }
+  
+  .step-navigation {
+    margin-top: 1.25rem;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 426px) {
+  .order-wizard {
+    gap: 1rem;
+  }
+  
+  .steps-progress {
+    justify-content: space-between;
+    gap: 0;
+  }
+  
+  .steps-progress::before {
+    top: 22px;
+    left: 15px;
+    right: 15px;
+    height: 1.5px;
+  }
+  
+  .step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    min-width: 0;
+  }
+  
+  .step-title {
+    display: none;
+  }
+  
+  .step-number {
+    margin: 0 auto 0.5rem;
+    border-width: 1.5px;
+    width: 30px;
+    height: 30px;
+    font-size: 0.6875rem;
+  }
+  
+  .step-navigation {
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-top: 1rem;
+  }
+  
+  .step-navigation button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .wizard-content {
+    padding: 0;
+  }
+  
+  /* Уменьшение размеров элементов формы */
+  .order-wizard .form-group {
+    margin-bottom: 0.75rem;
+  }
+  
+  .order-wizard label {
+    font-size: 0.875rem;
+    margin-bottom: 0.375rem;
+  }
+  
+  .order-wizard input,
+  .order-wizard select,
+  .order-wizard textarea {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.5rem;
+  }
+  
+  /* Адаптация для MUI компонентов */
+  .route-selection .MuiInputLabel-root {
+    font-size: 0.875rem;
+  }
+  
+  .route-selection .MuiOutlinedInput-input {
+    padding: 0.875rem;
+    font-size: 0.875rem;
+  }
+}

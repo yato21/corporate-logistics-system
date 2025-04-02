@@ -1,0 +1,1030 @@
+/* Базовые стили таблицы */
+.order-table-container {
+  background: white;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  margin-top: 0;
+  border: none;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1rem;
+}
+
+.order-table th {
+  background-color: #f9fafb;
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  font-weight: 500;
+  color: var(--gray-500);
+  border-bottom: 1px solid var(--gray-200);
+  white-space: nowrap;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.order-table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-700);
+  line-height: 1.5;
+}
+
+/* Отступы для первой и последней ячейки */
+.order-table th:first-child,
+.order-table td:first-child {
+  padding-left: 20px;
+}
+
+.order-table th:last-child,
+.order-table td:last-child {
+  padding-right: 20px;
+}
+
+/* Стили для статусов */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Цвета статусов */
+.status-pending { background-color: #FEF3C7; color: #92400E; }
+.status-assigned { background-color: #F3E8FF; color: #9333EA; }
+.status-in_progress { background-color: #DBEAFE; color: #1E40AF; }
+.status-completed { background-color: #D1FAE5; color: #065F46; }
+.status-cancelled { background-color: #FEE2E2; color: #991B1B; }
+
+/* Стили фильтров */
+.filters-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  background: white;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+/* Общие стили для элементов форм */
+.search-box input,
+.filter-select,
+.date-input,
+.reset-button {
+  height: 48px;
+  padding: 0 16px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #6b7280;
+  transition: all 0.2s;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Состояния hover и focus для элементов форм */
+.search-box input:hover,
+.filter-select:hover,
+.date-input:hover,
+.reset-button:hover {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+.search-box input:focus,
+.filter-select:focus,
+.date-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  outline: none;
+}
+
+/* Поле поиска */
+.search-box {
+  position: relative;
+  flex: 2;
+  min-width: 360px;
+}
+
+.search-box input {
+  width: 100%;
+  padding-left: 48px !important;
+  box-sizing: border-box;
+}
+
+.search-box i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  font-size: 1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Группа фильтров */
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 3;
+}
+
+.filter-select {
+  min-width: 220px;
+  flex: 1;
+}
+
+/* Контейнер дат */
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 2;
+}
+
+.date-input {
+  flex: 1;
+  min-width: 160px;
+}
+
+.date-separator {
+  color: #9ca3af;
+  padding: 0 8px;
+  font-size: 1rem;
+}
+
+/* Кнопка сброса */
+.reset-button {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+.reset-button i {
+  font-size: 1.125rem;
+}
+
+/* Основной контейнер */
+.orders-list {
+  width: 100%;
+  overflow: hidden;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер для вкладок */
+.tabs-container {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  background: var(--gray-100);
+  border-radius: 8px 8px 0 0;
+  padding: 8px 8px 0 8px;
+  gap: 2px;
+}
+
+/* Основные вкладки */
+.main-tabs {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 4px;
+}
+
+.tab-item {
+  padding: 8px 32px 8px 16px;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-700);
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  font-size: 1rem;
+  background: var(--gray-200);
+  border-radius: 8px 8px 0 0;
+}
+
+.tab-item:hover {
+  background: var(--gray-50);
+}
+
+.tab-item.active {
+  background: white;
+  color: var(--gray-900);
+  margin-bottom: -1px;
+  border-bottom: 1px solid white;
+}
+
+/* Кнопки прокрутки */
+.scroll-button {
+  background: var(--gray-50);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--gray-600);
+  border-radius: 4px;
+  transition: all 0.2s;
+  margin: 0 2px;
+  padding: 0;
+}
+
+.scroll-button:hover:not(:disabled) {
+  background: var(--gray-100);
+  color: var(--gray-900);
+}
+
+.scroll-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.scroll-button i {
+  font-size: 12px;
+}
+
+/* Цвета для активных вкладок заказов */
+.tab-item[data-status].active {
+  border-color: inherit;
+}
+
+.tab-item[data-status="pending"].active {
+  background: #FEF3C7;
+  color: #92400E;
+  border-color: #FEF3C7;
+}
+
+.tab-item[data-status="assigned"].active {
+  background-color: #F3E8FF;
+  color: #9333EA;
+  border-color: #F3E8FF;
+}
+
+.tab-item[data-status="in_progress"].active {
+  background: #DBEAFE;
+  color: #1E40AF;
+  border-color: #DBEAFE;
+}
+
+.tab-item[data-status="completed"].active {
+  background: #D1FAE5;
+  color: #065F46;
+  border-color: #D1FAE5;
+}
+
+.tab-item[data-status="cancelled"].active {
+  background: #FEE2E2;
+  color: #991B1B;
+  border-color: #FEE2E2;
+}
+
+/* Стили для строк таблицы */
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.clickable-row:hover {
+  background-color: var(--gray-50);
+}
+
+/* Стили для пустой таблицы */
+.no-orders {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--gray-500);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Стили для информации в строках */
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.order-info-main {
+  font-weight: 500;
+  color: var(--gray-800);
+}
+
+.order-info-secondary {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
+
+/* Контейнер для иконки сортировки */
+.sort-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  color: var(--gray-400);
+  margin-left: 8px;
+}
+
+.sort-icon i {
+  vertical-align: middle;
+}
+
+/* Стили для активной сортировки */
+.order-table th.active-sort {
+  color: var(--gray-900);
+}
+
+.order-table th.active-sort .sort-icon {
+  color: var(--accent-color);
+}
+
+/* Эффект при наведении на заголовок */
+.order-table th:hover {
+  color: var(--gray-900);
+  background-color: #f3f4f6;
+}
+
+/* Убираем placeholder для колонки транспорта (несортируемая) */
+.order-table th:last-child::after {
+  display: none;
+}
+
+/* Контент под вкладками */
+.order-list-content {
+  background: white;
+}
+
+.order-list-content .task-card-header {
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.order-list-content .task-card-content {
+  padding: 1.5rem 0;
+}
+
+.order-list-content .task-info-section {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  margin-bottom: 2rem;
+}
+
+.order-list-content .task-info-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Убираем дублирующиеся внешние границы и тени */
+.order-list-content .task-card-container {
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* Контейнер для прокручиваемых вкладок заказов */
+.scrollable-tabs {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  border-left: 1px solid var(--gray-200);
+  padding: 0px 0px 0px 8px;
+}
+
+.tabs-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Стили для вкладок заказов */
+.tabs-list {
+  display: inline-flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+  gap: 4px;
+}
+
+/* Стили для кнопки закрытия вкладки */
+.close-tab {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  color: var(--gray-400);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s;
+  font-size: 12px;
+}
+
+.close-tab:hover {
+  background-color: var(--gray-300);
+  color: var(--gray-900);
+}
+
+/* Добавляем стили для колонки транспорта */
+.orders-table td:last-child {
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+.orders-table td:last-child:empty::after {
+  content: '—';
+  color: var(--gray-400);
+}
+
+@media (max-width: 1025px) {
+  /* Используем такую же структуру как для планшетов, учитывая боковое меню */
+  .filters-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+      "search reset"
+      "filters filters";
+    gap: 12px;
+    padding: 14px;
+  }
+  
+  /* Поле поиска в первой строке слева */
+  .search-box {
+    grid-area: search;
+    min-width: 0;
+    width: 100%;
+  }
+  
+  /* Кнопка сброса в первой строке справа */
+  .reset-button {
+    grid-area: reset;
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    margin: 0 0 0 12px;
+  }
+  
+  /* Группа фильтров во второй строке на всю ширину */
+  .filter-group {
+    grid-area: filters;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  /* Выравнивание элементов фильтров */
+  .filter-select {
+    min-width: 160px;
+    flex: 1;
+  }
+  
+  .date-range {
+    min-width: 300px;
+    flex: 2;
+    justify-content: space-between;
+  }
+  
+  /* Компактные отступы в таблице */
+  .order-table th,
+  .order-table td {
+    padding: 0.875rem 0.75rem;
+    font-size: 0.925rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Улучшенная адаптивность таблицы */
+  .order-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  
+  /* Настройка ширины колонок */
+  .order-table th:nth-child(1), 
+  .order-table td:nth-child(1) {
+    width: 13%;
+    min-width: 30px;
+  }
+  
+  .order-table th:nth-child(2), 
+  .order-table td:nth-child(2) {
+    width: 33%;
+  }
+  
+  .order-table th:nth-child(3), 
+  .order-table td:nth-child(3) {
+    width: 16%;
+  }
+  
+  .order-table th:nth-child(4), 
+  .order-table td:nth-child(4) {
+    width: 19%;
+  }
+  
+  .order-table th:nth-child(5), 
+  .order-table td:nth-child(5) {
+    width: 19%;
+  }
+  
+  /* Улучшенное отображение длинных текстов в таблице */
+  .order-table td {
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+    vertical-align: middle;
+    overflow: visible;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    height: 70px;
+  }
+  
+  /* Первая колонка (номер) остается компактной */
+  .order-table td:nth-child(1) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Настройка маршрута с переносом */
+  .order-table td:nth-child(2) {
+    text-align: left;
+    padding-left: 10px;
+  }
+  
+  /* Настройка ячеек с датой */
+  .order-table td:nth-child(3) {
+    min-width: 110px;
+  }
+  
+  /* Ячейки со статусом */
+  .order-table td:nth-child(4) {
+    text-align: center;
+  }
+  
+  /* Стиль для маршрута */
+  .order-info {
+    text-align: left;
+  }
+  
+  .order-info-main {
+    display: block;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: visible;
+    max-height: none;
+    line-height: 1.4;
+  }
+  
+  .order-info-secondary {
+    display: block;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: left;
+    line-height: 1.3;
+  }
+  
+  /* Компактный бейдж статуса с переносом текста */
+  .status-badge {
+    padding: 6px 8px;
+    white-space: normal;
+    line-height: 1.2;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  /* Скрытие статичной иконки сортировки */
+  .order-table th .sort-icon .fas.fa-sort {
+    display: none;
+  }
+  
+  /* Улучшение видимости активных иконок сортировки */
+  .order-table th.active-sort .sort-icon {
+    color: var(--accent-color);
+    font-size: 1rem;
+  }
+  
+  /* Улучшение выравнивания заголовков */
+  .order-table th {
+    text-align: center;
+  }
+  
+  .order-table th:first-child {
+    text-align: center;
+  }
+  
+  .order-table th:nth-child(2) {
+    text-align: left;
+    padding-left: 10px;
+  }
+}
+
+/* Оптимизация таблицы для мобильных устройств */
+@media (max-width: 426px) {
+  /* Переопределение структуры вкладок */
+  .tabs-container {
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  /* Основные вкладки на всю ширину */
+  .main-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .main-tabs .tab-item {
+    flex: 1;
+    padding: 8px 4px;
+    min-width: auto;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+  
+  /* Прокручиваемые вкладки заказов на новой строке */
+  .scrollable-tabs {
+    width: 100%;
+    border-left: none;
+    padding: 8px 0 0;
+    margin-top: 8px;
+    border-top: 1px solid var(--gray-200);
+  }
+  
+  /* Уменьшаем размер текста и отступы для вкладок заказов */
+  .tabs-list .tab-item {
+    padding: 8px 28px 8px 8px;
+    font-size: 0.875rem;
+  }
+  
+  /* Уменьшаем размер и положение кнопки закрытия */
+  .close-tab {
+    right: 4px;
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+  }
+  
+  /* Уменьшаем размер кнопок прокрутки */
+  .scroll-button {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+  }
+  
+  /* Адаптируем заголовок таблицы */
+  .order-table th {
+    padding: 0.5rem 0.375rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  .order-table th:first-child,
+  .order-table td:first-child {
+    padding-left: 12px;
+  }
+  
+  .order-table th:last-child,
+  .order-table td:last-child {
+    padding-right: 12px;
+  }
+  
+  /* Компактный контейнер фильтров - исправлен */
+  .filters-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 
+      "search reset"
+      "filters filters";
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  /* Поле поиска */
+  .search-box {
+    grid-area: search;
+    width: 100%;
+    min-width: unset;
+  }
+  
+  /* Кнопка сброса рядом с поиском */
+  .reset-button {
+    grid-area: reset;
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    padding: 0;
+    margin-left: 10px;
+  }
+  
+  /* Все фильтры ниже поиска и кнопки сброса */
+  .filter-group {
+    grid-area: filters;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  /* Стили для фильтров */
+  .filter-select {
+    flex: 1;
+    min-width: 120px;
+    height: 40px;
+  }
+  
+  .date-range {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .date-input {
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+    padding: 0 8px;
+  }
+  
+  .date-separator {
+    padding: 0 4px;
+    color: var(--gray-400);
+  }
+  
+  /* Таблица заказов для мобильных */
+  .order-table {
+    table-layout: fixed;
+    width: 100%;
+    min-width: 450px; /* Минимальная ширина с горизонтальной прокруткой */
+  }
+  
+    /* Ячейки таблицы */
+  .order-table td {
+    padding: 8px 4px;
+    font-size: 0.75rem;
+    height: auto;
+    min-height: 60px;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  /* Форматирование ячеек с маршрутом */
+  .order-table td:nth-child(2) {
+    text-align: left;
+  }
+  
+  /* Компактный формат даты */
+  .order-table td:nth-child(3) {
+    white-space: pre-line;
+    line-height: 1.2;
+  }
+  
+  /* Улучшение бейджей статуса */
+  .status-badge {
+    padding: 4px 6px;
+    font-size: 0.7rem;
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.1;
+    min-height: 26px;
+  }
+  
+  /* Обеспечение горизонтальной прокрутки */
+  .order-table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    padding-bottom: 8px; /* Место для полосы прокрутки */
+  }
+  
+  /* Фиксированная ширина таблицы для прокрутки */
+  .order-table {
+    min-width: 500px; /* Фиксированная минимальная ширина */
+  }
+  
+  /* Индикатор прокрутки */
+  .order-table-container::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 16px;
+    height: 32px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.8));
+    border-radius: 0 4px 4px 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+/* Экстремальная оптимизация для очень маленьких экранов */
+@media (max-width: 376px) {
+  /* Еще больше уменьшаем вкладки */
+  .main-tabs .tab-item {
+    padding: 6px 2px;
+    font-size: 0.75rem;
+    min-width: auto;
+  }
+  
+  /* Улучшаем отображение текста в вкладках */
+  .tab-item {
+    letter-spacing: -0.5px;
+    word-spacing: -1px;
+  }
+  
+  /* Убираем лишние отступы */
+  .tabs-container {
+    padding: 8px 8px 0;
+  }
+  
+  /* Более компактное отображение вкладок заказов */
+  .tabs-list .tab-item {
+    padding: 6px 24px 6px 6px;
+    font-size: 0.75rem;
+  }
+  
+  /* Совсем маленькая кнопка закрытия */
+  .close-tab {
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    font-size: 8px;
+  }
+  
+  /* Уменьшаем ширину вкладок заказов */
+  .scrollable-tabs {
+    padding: 6px 0 0;
+    margin-top: 6px;
+  }
+  
+  /* Делаем кнопки прокрутки меньше */
+  .scroll-button {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    font-size: 0.75rem;
+  }
+  
+  
+  /* Еще сильнее уменьшаем таблицу */
+  .order-table th,
+  .order-table td {
+    padding: 6px 2px;
+    font-size: 0.7rem;
+  }
+  
+  /* Уменьшаем компоненты формы */
+  .search-box input,
+  .filter-select,
+  .date-input,
+  .reset-button {
+    height: 36px;
+    font-size: 0.75rem;
+  }
+  
+  /* Переработанный контейнер фильтров */
+  .filters-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+      "search reset"
+      "select select"
+      "dates dates";
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  /* Поле поиска в первой строке */
+  .search-box {
+    grid-area: search;
+  }
+  
+  /* Кнопка сброса в углу */
+  .reset-button {
+    grid-area: reset;
+    height: 32px;
+    width: 32px;
+    min-width: 32px;
+  }
+  
+  /* Переработка группы фильтров */
+  .filter-group {
+    display: contents;
+  }
+  
+  /* Селектор статуса отдельной строкой */
+  .filter-select {
+    grid-area: select;
+    width: 100%;
+    height: 32px;
+    min-width: 100%;
+    font-size: 0.75rem;
+  }
+  
+  /* Диапазон дат отдельной строкой */
+  .date-range {
+    grid-area: dates;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+  }
+  
+  /* Меньшие поля для дат */
+  .date-input {
+    height: 32px;
+    font-size: 0.75rem;
+    padding: 0 4px;
+    flex-basis: calc(50% - 10px);
+  }
+  
+  /* Поля поиска и другие формы */
+  .search-box input {
+    height: 32px;
+    font-size: 0.75rem;
+    padding-left: 28px !important;
+  }
+  
+  .search-box i {
+    left: 8px;
+    font-size: 0.75rem;
+  }
+  
+  /* Таблица становится еще компактнее */
+  .order-table {
+    min-width: 400px; /* Чуть меньшая минимальная ширина */
+  }
+  
+  /* Еще меньшие отступы */
+  .order-table th,
+  .order-table td {
+    padding: 6px 2px;
+    font-size: 0.7rem;
+  }
+  
+  /* Микро-бейджи для статусов */
+  .status-badge {
+    padding: 3px 4px;
+    font-size: 0.65rem;
+    min-height: 22px;
+  }
+  
+  /* Формат отображения даты */
+  .order-table td:nth-child(3) {
+    white-space: normal;
+    word-break: break-all;
+    font-size: 0.65rem;
+  }
+}
