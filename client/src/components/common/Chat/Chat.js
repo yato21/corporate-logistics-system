@@ -289,52 +289,6 @@ const Chat = ({ orderId, onClose, isInModal = false }) => {
     );
   };
 
-  // Добавляем функцию для обработки клика по изображению
-  const handleImageClick = async (file) => {
-    try {
-      // Устанавливаем индикатор загрузки
-      setLoading(true);
-      
-      // Используем полный URL сервера
-      const serverUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-      const token = localStorage.getItem('token');
-      
-      // Создаем URL для скачивания с правильно закодированным путем
-      const imageUrl = `${serverUrl}/uploads/${encodeURIComponent(file.filePath)}`;
-      
-      console.log('Открытие изображения:', {
-        url: imageUrl,
-        originalName: file.originalName
-      });
-      
-      const response = await fetch(imageUrl, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error(`Ошибка при загрузке изображения: ${response.status} ${response.statusText}`);
-      }
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      
-      // Открываем изображение в новой вкладке
-      window.open(url, '_blank');
-      
-      // Освобождаем ресурсы
-      setTimeout(() => {
-        window.URL.revokeObjectURL(url);
-      }, 100);
-    } catch (error) {
-      console.error('Ошибка при открытии изображения:', error);
-      setError('Ошибка при открытии изображения: ' + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Обновляем функцию для загрузки изображения с токеном
   const loadImageWithToken = async (file, imgElement) => {
     try {
@@ -345,7 +299,9 @@ const Chat = ({ orderId, onClose, isInModal = false }) => {
       
       const serverUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
       const token = localStorage.getItem('token');
-      const imageUrl = `${serverUrl}/uploads/${encodeURIComponent(file.filePath)}`;
+      
+      // Используем новый путь для просмотра изображений
+      const imageUrl = `${serverUrl}/uploads/view/${encodeURIComponent(file.filePath)}`;
       
       // Загружаем изображение с токеном
       const response = await fetch(imageUrl, {
@@ -370,6 +326,48 @@ const Chat = ({ orderId, onClose, isInModal = false }) => {
       console.error('Ошибка при загрузке изображения:', error);
       // В случае ошибки показываем иконку ошибки
       imgElement.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlNTM5MzUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCI+PC9jaXJjbGU+PGxpbmUgeDE9IjEyIiB5MT0iOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48bGluZSB4MT0iMTIiIHkxPSIxNiIgeDI9IjEyLjAxIiB5Mj0iMTYiPjwvbGluZT48L3N2Zz4=';
+    }
+  };
+
+  // Обновляем функцию для обработки клика по изображению
+  const handleImageClick = async (file) => {
+    try {
+      setLoading(true);
+      
+      const serverUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const token = localStorage.getItem('token');
+      
+      // Используем новый путь для просмотра изображений
+      const imageUrl = `${serverUrl}/uploads/view/${encodeURIComponent(file.filePath)}`;
+      
+      console.log('Открытие изображения:', {
+        url: imageUrl,
+        originalName: file.originalName
+      });
+      
+      const response = await fetch(imageUrl, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Ошибка при загрузке изображения: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      window.open(url, '_blank');
+      
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url);
+      }, 100);
+    } catch (error) {
+      console.error('Ошибка при открытии изображения:', error);
+      setError('Ошибка при открытии изображения: ' + error.message);
+    } finally {
+      setLoading(false);
     }
   };
 

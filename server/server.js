@@ -72,6 +72,47 @@ app.get('/uploads/:filename', authJwt.verifyToken, async (req, res) => {
   }
 });
 
+// Специальный маршрут для отображения изображений (без скачивания)
+app.get('/uploads/view/:filename', authJwt.verifyToken, async (req, res) => {
+  try {
+    console.log('Запрос на просмотр изображения:', {
+      filename: req.params.filename,
+      headers: req.headers
+    });
+
+    const filePath = path.join(__dirname, 'uploads', req.params.filename);
+    
+    if (!fs.existsSync(filePath)) {
+      console.log('Файл не найден:', filePath);
+      return res.status(404).json({ message: "Файл не найден" });
+    }
+
+    const doc = await db.document.findOne({
+      where: { filePath: req.params.filename }
+    });
+
+    if (!doc) {
+      console.log('Документ не найден в БД');
+      return res.status(404).json({ message: "Документ не найден в БД" });
+    }
+
+    // Проверяем, является ли файл изображением
+    const isImage = doc.mimeType && doc.mimeType.startsWith('image/');
+    
+    // Отправляем файл с правильным Content-Type, но без заголовка Content-Disposition для просмотра
+    res.sendFile(filePath, {
+      headers: {
+        'Content-Type': doc.mimeType,
+        'Content-Length': fs.statSync(filePath).size,
+      }
+    });
+
+  } catch (error) {
+    console.error('Ошибка при отправке изображения:', error);
+    res.status(500).json({ message: "Ошибка при отправке изображения" });
+  }
+});
+
 const io = setupSocketIO(server);
 app.set('io', io);
 
@@ -87,9 +128,6 @@ require('./routes/user.routes')(app);
 require('./routes/order.routes')(app);
 require('./routes/document.routes')(app);
 require('./routes/dispatcher.routes')(app);
-
-// Статические файлы
-app.use('/uploads', express.static('uploads'));
 
 // Запуск сервера
 const PORT = process.env.PORT || 5000;
